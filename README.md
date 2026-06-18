@@ -45,7 +45,7 @@ This portfolio showcases my work in AI engineering — including multi-model RAG
 
 - **ProstheX AI** — 7-DOF prosthetic arm with TinyML & sEMG gesture recognition
 - **SmartLearn AI** — Multi-model RAG tutoring platform (GPT-4, Gemini, LLaMA)
-- **BrainBuddy** — Multi-agent cognitive AI system
+- **SnapShop** — Full-Stack Jewelry E-commerce platform built with React & FastAPI
 - **TCP AI Chat System** — Socket-based real-time AI communication
 - **Grocery Management System** — Flask web app with role-based auth
 
