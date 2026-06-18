@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anusha Hasan — AI Engineer & Full-Stack Developer</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Anusha Hasan — AI Engineer specializing in LLMs, RAG pipelines, Agentic AI systems, FastAPI, and React. Available for AI engineering roles."/>
+  <meta name="keywords" content="AI Engineer, LLM, RAG, Agentic AI, FastAPI, React, Python, GPT-4, Gemini, LangChain, Full-Stack AI Developer"/>
+  <meta name="author" content="Anusha Hasan"/>
+  <meta property="og:title" content="Anusha Hasan — AI Engineer"/>
+  <meta property="og:description" content="Building production-grade AI systems with LLMs, RAG, and agentic architectures."/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Anusha Hasan — AI Engineer"/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            space: '#030712',
+            indigo: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5' },
+            cyan: { 300: '#67e8f9', 400: '#22d3ee', 500: '#06b6d4' },
+            violet: { 300: '#c4b5fd', 400: '#a78bfa', 500: '#8b5cf6' },
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'spin-slow': 'spin 20s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="styles.css"/>
+  <script>
+    window._loaderFallback = setTimeout(function() {
+      var l = document.getElementById("loader");
+      if (l) { l.style.opacity = "0"; l.style.pointerEvents = "none"; setTimeout(function(){ l.style.display = "none"; }, 400); }
+    }, 3000);
+  </script>
+</head>
+<body class="bg-space text-slate-200 font-sans antialiased overflow-x-hidden">
+
+  <!-- ═══════════════════════════ LOADING SCREEN ═══════════════════════════ -->
+  <div id="loader" class="fixed inset-0 z-[9999] bg-space flex flex-col items-center justify-center">
+    <div class="loader-neural mb-8">
+      <canvas id="loaderCanvas" width="120" height="120"></canvas>
+    </div>
+    <div class="font-mono text-sm text-indigo-400 tracking-widest loader-text">INITIALIZING AI SYSTEMS</div>
+    <div class="loader-bar mt-4 w-48 h-0.5 bg-slate-800 rounded-full overflow-hidden">
+      <div id="loaderProgress" class="h-full bg-gradient-to-r from-indigo-500 to-cyan-400 rounded-full" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ CUSTOM CURSOR ═══════════════════════════ -->
+  <div id="cursor" class="fixed w-4 h-4 rounded-full pointer-events-none z-[9998] mix-blend-screen"></div>
+  <div id="cursor-trail" class="fixed w-8 h-8 rounded-full pointer-events-none z-[9997]"></div>
+
+  <!-- ═══════════════════════════ NAVIGATION ═══════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-5 transition-all duration-500">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="#home" class="nav-logo font-mono text-lg font-medium">
+        <span class="text-white">anusha</span><span class="text-indigo-400">.</span><span class="text-cyan-400">ai</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="nav-link font-mono text-sm text-slate-400 hover:text-white transition-colors">about</a>
+        <a href="#experience" class="nav-link font-mono text-sm text-slate-400 hover:text-white transition-colors">experience</a>
+        <a href="#projects" class="nav-link font-mono text-sm text-slate-400 hover:text-white transition-colors">projects</a>
+        <a href="#skills" class="nav-link font-mono text-sm text-slate-400 hover:text-white transition-colors">skills</a>
+        <a href="#contact" class="nav-link font-mono text-sm text-slate-400 hover:text-white transition-colors">contact</a>
+      </div>
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full border border-indigo-500/40 text-indigo-300 font-mono text-sm hover:bg-indigo-500/10 transition-all duration-300 hover:border-indigo-400">
+        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+        Open to Work
+      </a>
+      <!-- Mobile menu button -->
+      <button id="mobileMenuBtn" class="md:hidden text-slate-400 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-white/5 pt-4 flex flex-col gap-4">
+      <a href="#about" class="font-mono text-sm text-slate-400 hover:text-white">about</a>
+      <a href="#experience" class="font-mono text-sm text-slate-400 hover:text-white">experience</a>
+      <a href="#projects" class="font-mono text-sm text-slate-400 hover:text-white">projects</a>
+      <a href="#skills" class="font-mono text-sm text-slate-400 hover:text-white">skills</a>
+      <a href="#contact" class="font-mono text-sm text-slate-400 hover:text-white">contact</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+    <!-- Particle canvas -->
+    <canvas id="particleCanvas" class="absolute inset-0 w-full h-full opacity-40"></canvas>
+
+    <!-- Gradient orbs -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none orb-1"></div>
+    <div class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none orb-2"></div>
+    <div class="absolute top-1/2 right-1/3 w-64 h-64 bg-violet-500/10 rounded-full blur-3xl pointer-events-none orb-3"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center pt-24 pb-20">
+      <!-- Left: Text -->
+      <div class="hero-text">
+        <div class="hero-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/5 mb-8">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+          <span class="font-mono text-xs text-indigo-300 tracking-wider">AI ENGINEER · KARACHI, PK</span>
+        </div>
+
+        <h1 class="hero-name text-6xl md:text-7xl font-bold text-white leading-none mb-4 tracking-tight">
+          Anusha<br/>
+          <span class="hero-name-gradient">Hasan</span>
+        </h1>
+
+        <p class="hero-tagline text-xl md:text-2xl text-slate-400 font-light mb-6 leading-relaxed">
+          Building AI systems that<br/>
+          <span class="text-cyan-400 font-medium">actually ship.</span>
+        </p>
+
+        <p class="hero-desc text-slate-500 max-w-lg mb-10 leading-relaxed">
+          CS student at KIET with production experience in multi-model RAG pipelines, agentic AI architectures, and full-stack AI application development. I turn LLM research into tools people use.
+        </p>
+
+        <div class="hero-cta flex flex-wrap gap-4">
+          <a href="#projects" class="btn-primary group inline-flex items-center gap-3 px-7 py-3.5 rounded-xl font-medium text-white transition-all duration-300">
+            View My Work
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="resume.pdf" download class="btn-secondary inline-flex items-center gap-3 px-7 py-3.5 rounded-xl font-medium text-slate-300 border border-slate-700 hover:border-slate-500 hover:text-white transition-all duration-300">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Resume
+          </a>
+        </div>
+
+        <!-- Social links -->
+        <div class="hero-social flex items-center gap-6 mt-10">
+          <a href="https://github.com/Anusha-hasan25" target="_blank" rel="noopener" class="text-slate-600 hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/anushahasan25/" target="_blank" rel="noopener" class="text-slate-600 hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="mailto:anushahasan02@gmail.com" class="text-slate-600 hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Neural network visualization -->
+      <div class="hero-visual hidden md:flex items-center justify-center">
+        <div class="relative w-80 h-80">
+          <canvas id="neuralCanvas" width="320" height="320" class="w-full h-full"></canvas>
+          <!-- Floating labels -->
+          <div class="absolute -top-4 -right-4 glass-card px-3 py-1.5 rounded-lg text-xs font-mono text-indigo-300 float-anim">GPT-4</div>
+          <div class="absolute top-1/3 -left-8 glass-card px-3 py-1.5 rounded-lg text-xs font-mono text-cyan-300 float-anim" style="animation-delay:1s">RAG</div>
+          <div class="absolute -bottom-4 right-1/4 glass-card px-3 py-1.5 rounded-lg text-xs font-mono text-violet-300 float-anim" style="animation-delay:2s">LangChain</div>
+          <div class="absolute bottom-1/4 -right-10 glass-card px-3 py-1.5 rounded-lg text-xs font-mono text-green-300 float-anim" style="animation-delay:0.5s">FastAPI</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+      <span class="font-mono text-xs text-slate-500 tracking-widest">SCROLL</span>
+      <div class="w-px h-12 bg-gradient-to-b from-slate-500 to-transparent scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ STATS ═══════════════════════════ -->
+  <section class="py-16 border-y border-white/5" id="stats-section">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="stat-card text-center">
+        <div class="text-4xl font-bold text-white mb-1"><span class="counter" data-target="3">0</span>+</div>
+        <div class="font-mono text-xs text-slate-500 uppercase tracking-wider">LLM Models Integrated</div>
+      </div>
+      <div class="stat-card text-center">
+        <div class="text-4xl font-bold text-white mb-1"><span class="counter" data-target="50">0</span>+</div>
+        <div class="font-mono text-xs text-slate-500 uppercase tracking-wider">Test Cases Executed</div>
+      </div>
+      <div class="stat-card text-center">
+        <div class="text-4xl font-bold text-white mb-1"><span class="counter" data-target="5">0</span>+</div>
+        <div class="font-mono text-xs text-slate-500 uppercase tracking-wider">AI Projects Built</div>
+      </div>
+      <div class="stat-card text-center">
+        <div class="text-4xl font-bold text-white mb-1"><span class="counter" data-target="3">0</span>.<span class="text-cyan-400">45</span></div>
+        <div class="font-mono text-xs text-slate-500 uppercase tracking-wider">CGPA · KIET</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
+  <section id="about" class="py-28 px-6">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+      <div class="about-text reveal">
+        <div class="section-label font-mono text-xs text-indigo-400 tracking-widest mb-4 uppercase">About</div>
+        <h2 class="text-4xl font-bold text-white mb-6 leading-tight">
+          I build AI that bridges<br/>
+          <span class="gradient-text">research and production</span>
+        </h2>
+        <div class="space-y-4 text-slate-400 leading-relaxed">
+          <p>I'm a Computer Science student at KIET with a focus on AI engineering — specifically the gap between "it works in a notebook" and "it works at scale." My internship at Folio3 taught me that multi-model RAG pipelines, agentic orchestration, and real API integrations require engineering discipline, not just AI intuition.</p>
+          <p>I've worked across the full stack of AI application development: from designing vector retrieval strategies and prompt chains to building React interfaces and FastAPI backends that tie it all together.</p>
+          <p>Outside of internships, I research prosthetic intelligence — applying TinyML and edge AI to real-world biomedical problems. I'm looking for a team where AI craft matters.</p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-2 gap-4">
+          <div class="glass-card p-4 rounded-xl">
+            <div class="text-xs font-mono text-slate-500 mb-1">CURRENTLY AT</div>
+            <div class="text-white font-medium">Digital Frontiers X</div>
+            <div class="text-xs text-indigo-300">SQA Intern</div>
+          </div>
+          <div class="glass-card p-4 rounded-xl">
+            <div class="text-xs font-mono text-slate-500 mb-1">EDUCATION</div>
+            <div class="text-white font-medium">KIET</div>
+            <div class="text-xs text-cyan-300">BS Computer Science · 2027</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Specialization pills -->
+      <div class="about-pills reveal flex flex-wrap gap-3">
+        <div class="spec-pill">Large Language Models</div>
+        <div class="spec-pill spec-pill--cyan">RAG Architecture</div>
+        <div class="spec-pill spec-pill--violet">Agentic AI</div>
+        <div class="spec-pill">FastAPI</div>
+        <div class="spec-pill spec-pill--cyan">React</div>
+        <div class="spec-pill spec-pill--violet">Prompt Engineering</div>
+        <div class="spec-pill">GPT-4</div>
+        <div class="spec-pill spec-pill--cyan">Gemini</div>
+        <div class="spec-pill spec-pill--violet">LLaMA</div>
+        <div class="spec-pill">LangChain</div>
+        <div class="spec-pill spec-pill--cyan">Vector Databases</div>
+        <div class="spec-pill spec-pill--violet">Python</div>
+        <div class="spec-pill">TinyML</div>
+        <div class="spec-pill spec-pill--cyan">Edge AI</div>
+        <div class="spec-pill spec-pill--violet">Full-Stack AI</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ EXPERIENCE ═══════════════════════════ -->
+  <section id="experience" class="py-28 px-6 bg-[#050b18]">
+    <div class="max-w-7xl mx-auto">
+      <div class="section-label font-mono text-xs text-indigo-400 tracking-widest mb-4 uppercase reveal">Experience</div>
+      <h2 class="text-4xl font-bold text-white mb-16 reveal">Career Timeline</h2>
+
+      <div class="timeline">
+
+        <!-- Folio3 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="glass-card p-8 rounded-2xl ml-8 md:ml-12 hover-lift">
+            <div class="flex flex-wrap items-start justify-between gap-4 mb-6">
+              <div>
+                <h3 class="text-xl font-bold text-white">AI Engineer Intern</h3>
+                <div class="flex items-center gap-3 mt-1">
+                  <span class="text-indigo-300 font-medium">Folio3</span>
+                  <span class="w-1 h-1 rounded-full bg-slate-600"></span>
+                  <span class="text-slate-500 text-sm">Karachi, Pakistan</span>
+                </div>
+              </div>
+              <span class="font-mono text-xs text-slate-500 bg-slate-800/50 px-3 py-1.5 rounded-full border border-slate-700">Oct 2025 – Nov 2025</span>
+            </div>
+            <ul class="space-y-3 text-slate-400 text-sm">
+              <li class="flex gap-3"><span class="text-indigo-400 mt-0.5 flex-shrink-0">▸</span> Engineered a <strong class="text-slate-300">multi-model RAG pipeline</strong> integrating GPT-4, Gemini, and LLaMA across text documents and YouTube transcripts, enabling an AI student assistant to answer questions, summarize content, and auto-generate quizzes.</li>
+              <li class="flex gap-3"><span class="text-indigo-400 mt-0.5 flex-shrink-0">▸</span> Built <strong class="text-slate-300">agentic AI features</strong> with tool-use and memory orchestration, improving the assistant's ability to handle multi-step queries without human intervention.</li>
+              <li class="flex gap-3"><span class="text-indigo-400 mt-0.5 flex-shrink-0">▸</span> Developed a <strong class="text-slate-300">React + FastAPI full-stack interface</strong> connecting the AI backend to a responsive front-end used by the project team.</li>
+              <li class="flex gap-3"><span class="text-indigo-400 mt-0.5 flex-shrink-0">▸</span> Presented agentic features at a <strong class="text-slate-300">demo-day showcase</strong> to stakeholders — project placed as an award-winning AI learning assistant.</li>
+            </ul>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="skill-tag">GPT-4</span><span class="skill-tag">Gemini</span><span class="skill-tag">LLaMA</span>
+              <span class="skill-tag">RAG</span><span class="skill-tag">FastAPI</span><span class="skill-tag">React</span><span class="skill-tag">LangChain</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Digital Frontiers X -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot timeline-dot--cyan"></div>
+          <div class="glass-card p-8 rounded-2xl ml-8 md:ml-12 hover-lift">
+            <div class="flex flex-wrap items-start justify-between gap-4 mb-6">
+              <div>
+                <h3 class="text-xl font-bold text-white">AI & SQA Intern</h3>
+                <div class="flex items-center gap-3 mt-1">
+                  <span class="text-cyan-300 font-medium">Digital Frontiers X</span>
+                  <span class="w-1 h-1 rounded-full bg-slate-600"></span>
+                  <span class="text-slate-500 text-sm">Karachi, Pakistan</span>
+                </div>
+              </div>
+              <span class="font-mono text-xs text-slate-500 bg-slate-800/50 px-3 py-1.5 rounded-full border border-slate-700">Dec 2025 – Mar 2026</span>
+            </div>
+            <ul class="space-y-3 text-slate-400 text-sm">
+              <li class="flex gap-3"><span class="text-cyan-400 mt-0.5 flex-shrink-0">▸</span> Validated <strong class="text-slate-300">AI workflows and model integrity</strong>, optimizing data processing pipelines for production AI systems.</li>
+              <li class="flex gap-3"><span class="text-cyan-400 mt-0.5 flex-shrink-0">▸</span> Designed and executed <strong class="text-slate-300">20–50+ test cases</strong> across web and API surfaces, covering functional, regression, and edge-case scenarios.</li>
+              <li class="flex gap-3"><span class="text-cyan-400 mt-0.5 flex-shrink-0">▸</span> Performed <strong class="text-slate-300">API testing with Postman</strong>, validating request/response integrity and error handling across multiple endpoints.</li>
+              <li class="flex gap-3"><span class="text-cyan-400 mt-0.5 flex-shrink-0">▸</span> Tracked, reported, and verified <strong class="text-slate-300">bug resolutions in Jira</strong>, collaborating through full defect lifecycle with the development team.</li>
+            </ul>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="skill-tag skill-tag--cyan">Postman</span><span class="skill-tag skill-tag--cyan">Jira</span>
+              <span class="skill-tag skill-tag--cyan">API Testing</span><span class="skill-tag skill-tag--cyan">Manual QA</span><span class="skill-tag skill-tag--cyan">Regression</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ PROJECTS ═══════════════════════════ -->
+  <section id="projects" class="py-28 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="section-label font-mono text-xs text-indigo-400 tracking-widest mb-4 uppercase reveal">Projects</div>
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-12 reveal">
+        <h2 class="text-4xl font-bold text-white">Featured Work</h2>
+        <!-- Filter buttons -->
+        <div class="flex gap-2 flex-wrap" id="filterBtns">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="ai">AI / LLM</button>
+          <button class="filter-btn" data-filter="hardware">Hardware AI</button>
+          <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projectsGrid">
+
+        <!-- ProstheX -->
+        <div class="project-card glass-card rounded-2xl overflow-hidden hover-lift reveal" data-category="hardware">
+          <div class="project-header h-40 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-violet-900/40 to-indigo-900/40">
+            <div class="project-icon text-5xl">🦾</div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div class="absolute top-4 right-4">
+              <span class="tag-badge tag-badge--violet">Hardware AI</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-bold text-white mb-2">ProstheX AI</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">7-DOF transhumeral prosthetic arm leveraging sEMG signals, TinyML, and edge AI for real-time gesture recognition. Compresses a classification model to under 100KB for deployment on microcontrollers.</p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="skill-tag skill-tag--violet">TinyML</span><span class="skill-tag skill-tag--violet">sEMG</span><span class="skill-tag skill-tag--violet">Edge AI</span><span class="skill-tag skill-tag--violet">Python</span>
+            </div>
+            <div class="flex gap-4">
+              <a href="https://github.com/Anusha-hasan25" target="_blank" class="project-link group">GitHub <svg class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SmartLearn AI -->
+        <div class="project-card glass-card rounded-2xl overflow-hidden hover-lift reveal" data-category="ai">
+          <div class="project-header h-40 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-indigo-900/40 to-blue-900/40">
+            <div class="project-icon text-5xl">🧠</div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div class="absolute top-4 right-4">
+              <span class="tag-badge">AI / LLM</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-bold text-white mb-2">SmartLearn AI</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">Multi-model RAG tutoring platform using GPT-4, Gemini, and LLaMA. Ingests documents and YouTube transcripts, auto-generates quizzes, and delivers adaptive learning experiences through a full-stack interface.</p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="skill-tag">GPT-4</span><span class="skill-tag">Gemini</span><span class="skill-tag">RAG</span><span class="skill-tag">FastAPI</span><span class="skill-tag">React</span>
+            </div>
+            <div class="flex gap-4">
+              <a href="https://github.com/Anusha-hasan25" target="_blank" class="project-link group">GitHub <svg class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- BrainBuddy -->
+        <div class="project-card glass-card rounded-2xl overflow-hidden hover-lift reveal" data-category="ai">
+          <div class="project-header h-40 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-cyan-900/40 to-teal-900/40">
+            <div class="project-icon text-5xl">🤖</div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div class="absolute top-4 right-4">
+              <span class="tag-badge tag-badge--cyan">Agentic AI</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-bold text-white mb-2">BrainBuddy</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">Multi-agent cognitive AI system for adaptive intelligence tracking and personalized recommendations. Agents coordinate to monitor learning patterns, surface insights, and adjust recommendation strategies dynamically.</p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="skill-tag skill-tag--cyan">Agentic AI</span><span class="skill-tag skill-tag--cyan">LangChain</span><span class="skill-tag skill-tag--cyan">Memory</span><span class="skill-tag skill-tag--cyan">Python</span>
+            </div>
+            <div class="flex gap-4">
+              <a href="https://github.com/Anusha-hasan25" target="_blank" class="project-link project-link--cyan group">GitHub <svg class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        
+        <!-- TCP AI Chat -->
+        <div class="project-card glass-card rounded-2xl overflow-hidden hover-lift reveal" data-category="fullstack">
+          <div class="project-header h-40 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-green-900/30 to-slate-900/40">
+            <div class="project-icon text-5xl">💬</div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div class="absolute top-4 right-4">
+              <span class="tag-badge tag-badge--cyan">Full-Stack</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-bold text-white mb-2">TCP AI Chat System</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">Socket-based real-time AI communication platform supporting live messaging and intelligent AI assistance. Implements low-latency TCP connections with an LLM-powered response layer for intelligent conversation routing.</p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="skill-tag skill-tag--cyan">TCP Sockets</span><span class="skill-tag skill-tag--cyan">Python</span><span class="skill-tag skill-tag--cyan">LLM</span><span class="skill-tag skill-tag--cyan">Real-time</span>
+            </div>
+            <div class="flex gap-4">
+              <a href="https://github.com/Anusha-hasan25" target="_blank" class="project-link project-link--cyan group">GitHub <svg class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grocery Management -->
+        <div class="project-card glass-card rounded-2xl overflow-hidden hover-lift reveal" data-category="fullstack">
+          <div class="project-header h-40 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-800/60 to-slate-900/40">
+            <div class="project-icon text-5xl">🛒</div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div class="absolute top-4 right-4">
+              <span class="tag-badge tag-badge--violet">Full-Stack</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-bold text-white mb-2">Grocery Management System</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">Flask web app with role-based access control, cart/checkout flow, and admin inventory dashboard. Implements session-based auth, product CRUD, and end-to-end order management in Python.</p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="skill-tag skill-tag--violet">Flask</span><span class="skill-tag skill-tag--violet">Python</span><span class="skill-tag skill-tag--violet">SQL</span><span class="skill-tag skill-tag--violet">HTML/CSS</span>
+            </div>
+            <div class="flex gap-4">
+              <a href="https://github.com/Anusha-hasan25/grocery_system" target="_blank" class="project-link project-link--violet group">GitHub <svg class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ SKILLS ═══════════════════════════ -->
+  <section id="skills" class="py-28 px-6 bg-[#050b18]">
+    <div class="max-w-7xl mx-auto">
+      <div class="section-label font-mono text-xs text-indigo-400 tracking-widest mb-4 uppercase reveal">Skills</div>
+      <h2 class="text-4xl font-bold text-white mb-16 reveal">Technical Expertise</h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="glass-card p-6 rounded-2xl reveal hover-lift">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center text-xl">🤖</div>
+            <h3 class="font-bold text-white">AI & LLMs</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="skill-bar-item"><span>GPT-4 / OpenAI API</span><div class="skill-bar"><div class="skill-bar-fill" style="--w:90%"></div></div></div>
+            <div class="skill-bar-item"><span>Gemini</span><div class="skill-bar"><div class="skill-bar-fill" style="--w:85%"></div></div></div>
+            <div class="skill-bar-item"><span>LLaMA / Open Source LLMs</span><div class="skill-bar"><div class="skill-bar-fill" style="--w:80%"></div></div></div>
+            <div class="skill-bar-item"><span>Prompt Engineering</span><div class="skill-bar"><div class="skill-bar-fill" style="--w:88%"></div></div></div>
+            <div class="skill-bar-item"><span>LangChain</span><div class="skill-bar"><div class="skill-bar-fill" style="--w:82%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl reveal hover-lift">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center text-xl">🔍</div>
+            <h3 class="font-bold text-white">RAG & Retrieval</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="skill-bar-item"><span>RAG Pipeline Design</span><div class="skill-bar skill-bar--cyan"><div class="skill-bar-fill skill-bar-fill--cyan" style="--w:88%"></div></div></div>
+            <div class="skill-bar-item"><span>Vector Databases</span><div class="skill-bar skill-bar--cyan"><div class="skill-bar-fill skill-bar-fill--cyan" style="--w:80%"></div></div></div>
+            <div class="skill-bar-item"><span>Embeddings</span><div class="skill-bar skill-bar--cyan"><div class="skill-bar-fill skill-bar-fill--cyan" style="--w:82%"></div></div></div>
+            <div class="skill-bar-item"><span>Agentic Architectures</span><div class="skill-bar skill-bar--cyan"><div class="skill-bar-fill skill-bar-fill--cyan" style="--w:78%"></div></div></div>
+            <div class="skill-bar-item"><span>Document Retrieval</span><div class="skill-bar skill-bar--cyan"><div class="skill-bar-fill skill-bar-fill--cyan" style="--w:85%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl reveal hover-lift">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-violet-500/20 flex items-center justify-center text-xl">⚡</div>
+            <h3 class="font-bold text-white">Backend</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="skill-bar-item"><span>Python</span><div class="skill-bar skill-bar--violet"><div class="skill-bar-fill skill-bar-fill--violet" style="--w:92%"></div></div></div>
+            <div class="skill-bar-item"><span>FastAPI</span><div class="skill-bar skill-bar--violet"><div class="skill-bar-fill skill-bar-fill--violet" style="--w:85%"></div></div></div>
+            <div class="skill-bar-item"><span>Flask</span><div class="skill-bar skill-bar--violet"><div class="skill-bar-fill skill-bar-fill--violet" style="--w:80%"></div></div></div>
+            <div class="skill-bar-item"><span>REST APIs</span><div class="skill-bar skill-bar--violet"><div class="skill-bar-fill skill-bar-fill--violet" style="--w:83%"></div></div></div>
+            <div class="skill-bar-item"><span>Django</span><div class="skill-bar skill-bar--violet"><div class="skill-bar-fill skill-bar-fill--violet" style="--w:70%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl reveal hover-lift">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center text-xl">🎨</div>
+            <h3 class="font-bold text-white">Frontend</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="skill-bar-item"><span>React</span><div class="skill-bar"><div class="skill-bar-fill" style="--w:82%"></div></div></div>
+            <div class="skill-bar-item"><span>JavaScript</span><div class="skill-bar"><div class="skill-bar-fill" style="--w:80%"></div></div></div>
+            <div class="skill-bar-item"><span>HTML / CSS</span><div class="skill-bar"><div class="skill-bar-fill" style="--w:88%"></div></div></div>
+            <div class="skill-bar-item"><span>Figma / UI Design</span><div class="skill-bar"><div class="skill-bar-fill" style="--w:75%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl reveal hover-lift">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center text-xl">🛠️</div>
+            <h3 class="font-bold text-white">Tools & QA</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="skill-bar-item"><span>Postman / API Testing</span><div class="skill-bar skill-bar--cyan"><div class="skill-bar-fill skill-bar-fill--cyan" style="--w:85%"></div></div></div>
+            <div class="skill-bar-item"><span>Jira</span><div class="skill-bar skill-bar--cyan"><div class="skill-bar-fill skill-bar-fill--cyan" style="--w:80%"></div></div></div>
+            <div class="skill-bar-item"><span>Git / GitHub</span><div class="skill-bar skill-bar--cyan"><div class="skill-bar-fill skill-bar-fill--cyan" style="--w:85%"></div></div></div>
+            <div class="skill-bar-item"><span>Docker</span><div class="skill-bar skill-bar--cyan"><div class="skill-bar-fill skill-bar-fill--cyan" style="--w:65%"></div></div></div>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="glass-card p-6 rounded-2xl reveal hover-lift">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-violet-500/20 flex items-center justify-center text-xl">🏅</div>
+            <h3 class="font-bold text-white">Certifications</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="cert-item"><span class="cert-dot cert-dot--violet"></span>Front-End Developer Capstone (Meta)</div>
+            <div class="cert-item"><span class="cert-dot cert-dot--indigo"></span>HTML, CSS & JS for Web Developers (JHU)</div>
+            <div class="cert-item"><span class="cert-dot cert-dot--cyan"></span>Foundations of UX Design (Google)</div>
+            <div class="cert-item"><span class="cert-dot cert-dot--violet"></span>Introduction to Cybersecurity</div>
+            <div class="cert-item"><span class="cert-dot cert-dot--indigo"></span>Introduction to Project Management</div>
+            <div class="cert-item"><span class="cert-dot cert-dot--cyan"></span>RESTful Web Services with JAX-RS</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ AI CHAT ASSISTANT ═══════════════════════════ -->
+  <section id="chat" class="py-28 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="section-label font-mono text-xs text-indigo-400 tracking-widest mb-4 uppercase reveal text-center">AI Assistant</div>
+      <h2 class="text-4xl font-bold text-white mb-4 reveal text-center">Ask Anusha's AI</h2>
+      <p class="text-slate-400 text-center mb-12 reveal">Powered by Claude. Ask anything about my skills, experience, or projects.</p>
+
+      <div class="glass-card rounded-2xl overflow-hidden reveal">
+        <!-- Chat header -->
+        <div class="flex items-center gap-3 px-6 py-4 border-b border-white/5">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center text-sm font-bold text-white">A</div>
+          <div>
+            <div class="text-sm font-medium text-white">Anusha's Portfolio Assistant</div>
+            <div class="flex items-center gap-1.5 text-xs text-slate-500"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>Online</div>
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="chatMessages" class="h-72 overflow-y-auto p-6 space-y-4 chat-scrollbar">
+          <div class="chat-msg chat-msg--bot">
+            <div class="chat-bubble chat-bubble--bot">
+              Hi! I'm an AI assistant that knows everything about Anusha's work. Ask me about her AI projects, experience at Folio3, tech stack, or anything else! 👋
+            </div>
+          </div>
+        </div>
+
+        <!-- Input -->
+        <div class="px-6 py-4 border-t border-white/5">
+          <div class="flex gap-3">
+            <input id="chatInput" type="text" placeholder="Ask about Anusha's experience, skills, or projects..."
+              class="flex-1 bg-slate-900/60 border border-slate-700/60 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/60 transition-colors"/>
+            <button id="chatSend" class="btn-primary px-5 py-3 rounded-xl font-medium text-white text-sm flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+            </button>
+          </div>
+          <div class="flex gap-2 mt-3 flex-wrap">
+            <button class="chat-suggest" onclick="insertSuggestion(this)">What AI projects has she built?</button>
+            <button class="chat-suggest" onclick="insertSuggestion(this)">What's her tech stack?</button>
+            <button class="chat-suggest" onclick="insertSuggestion(this)">Tell me about her RAG experience</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ CONTACT ═══════════════════════════ -->
+  <section id="contact" class="py-28 px-6 bg-[#050b18]">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+      <div class="reveal">
+        <div class="section-label font-mono text-xs text-indigo-400 tracking-widest mb-4 uppercase">Contact</div>
+        <h2 class="text-4xl font-bold text-white mb-6">Let's build something<br/><span class="gradient-text">meaningful.</span></h2>
+        <p class="text-slate-400 leading-relaxed mb-10">I'm actively looking for AI engineering roles where I can work on production LLM systems, RAG architectures, and real-world AI applications. If you're building something interesting, let's talk.</p>
+        <div class="space-y-4">
+          <a href="mailto:anushahasan02@gmail.com" class="flex items-center gap-4 group">
+            <div class="w-12 h-12 rounded-xl glass-card flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500/10 transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <div class="text-xs font-mono text-slate-500 mb-0.5">EMAIL</div>
+              <div class="text-white group-hover:text-indigo-300 transition-colors">anushahasan02@gmail.com</div>
+            </div>
+          </a>
+          <a href="tel:+923478360623" class="flex items-center gap-4 group">
+            <div class="w-12 h-12 rounded-xl glass-card flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500/10 transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            </div>
+            <div>
+              <div class="text-xs font-mono text-slate-500 mb-0.5">PHONE</div>
+              <div class="text-white group-hover:text-cyan-300 transition-colors">+92 347 836 0623</div>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/anushahasan25/" target="_blank" class="flex items-center gap-4 group">
+            <div class="w-12 h-12 rounded-xl glass-card flex items-center justify-center text-violet-400 group-hover:bg-violet-500/10 transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </div>
+            <div>
+              <div class="text-xs font-mono text-slate-500 mb-0.5">LINKEDIN</div>
+              <div class="text-white group-hover:text-violet-300 transition-colors">linkedin.com/in/anushahasan25</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="glass-card p-8 rounded-2xl reveal">
+        <h3 class="text-lg font-bold text-white mb-6">Send a Message</h3>
+        <div id="contactForm" class="space-y-4">
+          <div>
+            <label class="block text-xs font-mono text-slate-400 mb-2 uppercase tracking-wider">Name</label>
+            <input id="contactName" type="text" placeholder="Your name" class="contact-input w-full"/>
+            <p class="error-msg hidden text-xs text-red-400 mt-1" id="nameErr">Please enter your name.</p>
+          </div>
+          <div>
+            <label class="block text-xs font-mono text-slate-400 mb-2 uppercase tracking-wider">Email</label>
+            <input id="contactEmail" type="email" placeholder="your@email.com" class="contact-input w-full"/>
+            <p class="error-msg hidden text-xs text-red-400 mt-1" id="emailErr">Please enter a valid email.</p>
+          </div>
+          <div>
+            <label class="block text-xs font-mono text-slate-400 mb-2 uppercase tracking-wider">Message</label>
+            <textarea id="contactMsg" placeholder="Tell me about the opportunity..." rows="4" class="contact-input w-full resize-none"></textarea>
+            <p class="error-msg hidden text-xs text-red-400 mt-1" id="msgErr">Please write a message.</p>
+          </div>
+          <button onclick="submitForm()" class="btn-primary w-full py-3.5 rounded-xl font-medium text-white mt-2">
+            Send Message
+          </button>
+          <div id="formSuccess" class="hidden text-center text-green-400 font-mono text-sm py-2">
+            ✓ Message sent! I'll get back to you soon.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer class="py-8 px-6 border-t border-white/5">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <span class="font-mono text-sm text-slate-600">© 2026 Anusha Hasan · Built with intention.</span>
+      <div class="flex gap-6">
+        <a href="https://github.com/Anusha-hasan25" target="_blank" class="text-slate-600 hover:text-white transition-colors font-mono text-xs">GitHub</a>
+        <a href="https://www.linkedin.com/in/anushahasan25/" target="_blank" class="text-slate-600 hover:text-white transition-colors font-mono text-xs">LinkedIn</a>
+        <a href="mailto:anushahasan02@gmail.com" class="text-slate-600 hover:text-white transition-colors font-mono text-xs">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="home.js"></script>
+</body>
+</html>
